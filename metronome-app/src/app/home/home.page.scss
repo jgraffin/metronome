@@ -1,0 +1,23 @@
+.text-size {
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.play-large {
+  height: 50px;
+  width: 50px;
+}
+
+.bpm {
+  position: relative;
+
+  &::after {
+    content: attr(data-bpm);
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    font-size: 12px;
+  }
+}

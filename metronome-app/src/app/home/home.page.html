@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> teste aqui </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Músicas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item class="ion-align-items-center item">
+      <ion-icon
+        name="{{ status }}"
+        color="primary"
+        size="large"
+        class="ion-padding-end play-large"
+        (click)="startStop()"
+      ></ion-icon>
+      <ion-label class="text-size">Los Angeles is Burning</ion-label>
+      <div class="bpm" data-bpm="128">
+        <ion-icon
+          name="musical-note"
+          color="black"
+          size="small"
+          class="ion-padding-end"
+        ></ion-icon>
+      </div>
+      <ion-icon
+        class="ion-padding-start"
+        name="trash-outline"
+        color="black"
+        size="medium"
+      ></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

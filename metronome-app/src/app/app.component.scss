@@ -1,0 +1,26 @@
+#play-button {
+  width: 150px;
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.play {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 50px solid #e9e9e9;
+  margin-left: 15px;
+}
+
+.pause {
+  width: 15px;
+  height: 60px;
+  border: none;
+  border-left: 15px solid #e9e9e9;
+  border-right: 15px solid #e9e9e9;
+}
