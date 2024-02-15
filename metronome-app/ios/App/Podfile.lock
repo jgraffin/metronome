@@ -1,4 +1,6 @@
 PODS:
+  - AnuradevCapacitorBackgroundMode (2.0.8):
+    - Capacitor
   - Capacitor (5.7.0):
     - CapacitorCordova
   - CapacitorApp (5.0.7):
@@ -10,16 +12,22 @@ PODS:
     - Capacitor
   - CapacitorStatusBar (5.0.7):
     - Capacitor
+  - CordovaPlugins (3.9.0):
+    - CapacitorCordova
 
 DEPENDENCIES:
+  - "AnuradevCapacitorBackgroundMode (from `../../node_modules/@anuradev/capacitor-background-mode`)"
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
 
 EXTERNAL SOURCES:
+  AnuradevCapacitorBackgroundMode:
+    :path: "../../node_modules/@anuradev/capacitor-background-mode"
   Capacitor:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorApp:
@@ -32,15 +40,19 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/keyboard"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  CordovaPlugins:
+    :path: "../capacitor-cordova-ios-plugins"
 
 SPEC CHECKSUMS:
+  AnuradevCapacitorBackgroundMode: 72bb11b496d9da1b76cece85b3066e464c67109d
   Capacitor: fc155ee2ee45a2093d716f13cf5aa5a865e2d85a
   CapacitorApp: 17fecd0e6cb23feafac7eb0939417389038b0979
   CapacitorCordova: e825fce1a2e14e4b5730641c7e098dccf74397b7
   CapacitorHaptics: 7c7c206f0c96a628fed073830c96d28c4b2e772e
   CapacitorKeyboard: aec619a578235c6ce279075009a2689c2cf5c42c
   CapacitorStatusBar: f390fbb49b82ffb754ea4b3cf71dc8b048baf3e7
+  CordovaPlugins: 802c399109a4915c0b1a8b69654bb604a5f45513
 
-PODFILE CHECKSUM: 481b90c01cf7ba51cc0b3b166926c5af446138fd
+PODFILE CHECKSUM: 3a6c7a71fb0ca4c3b661929935aa88b822df260a
 
 COCOAPODS: 1.15.2

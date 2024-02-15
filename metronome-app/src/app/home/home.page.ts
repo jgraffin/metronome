@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal, ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
+import { EditComponent } from '../modal/edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -6,33 +9,36 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor() {}
+  @ViewChild(IonModal) modal!: IonModal;
+
+  constructor(private modalCtrl: ModalController) {}
 
   audioContext = null as any;
-  notesInQueue = [] as any; // notes that have been put into the web audio and may or may not have been played yet {note, time}
+  notesInQueue = [] as any;
   currentBeatInBar = 0;
-  beatsPerBar = 4;
-  tempo = 120;
-  lookahead = 25; // How frequently to call scheduling function (in milliseconds)
-  scheduleAheadTime = 0.1; // How far ahead to schedule audio (sec)
-  nextNoteTime = 0.0; // when the next note is due
+  beatsPerBar = 1;
+  song = '';
+  tempo = 100 as any;
+  lookahead = 25;
+  scheduleAheadTime = 0.1;
+  nextNoteTime = 0.0;
   isRunning = false;
   intervalID = null as any;
   status = 'play-circle';
+  isModalOpen = false;
 
   nextNote() {
-    // Advance current note and time by a quarter note (crotchet if you're posh)
-    var secondsPerBeat = 60.0 / this.tempo; // Notice this picks up the CURRENT tempo value to calculate beat length.
-    this.nextNoteTime += secondsPerBeat; // Add beat length to last beat time
+    let secondsPerBeat = 60.0 / this.tempo;
+    this.nextNoteTime += secondsPerBeat;
 
-    this.currentBeatInBar++; // Advance the beat number, wrap to zero
+    this.currentBeatInBar++;
+
     if (this.currentBeatInBar == this.beatsPerBar) {
       this.currentBeatInBar = 0;
     }
   }
 
   scheduleNote(beatNumber: number, time: number) {
-    // push the note on the queue, even if we're not playing.
     this.notesInQueue.push({ note: beatNumber, time: time });
 
     // create an oscillator
@@ -52,7 +58,6 @@ export class HomePage {
   }
 
   scheduler() {
-    // while there are notes that will need to play before the next interval, schedule them and advance the pointer.
     while (
       this.nextNoteTime <
       this.audioContext.currentTime + this.scheduleAheadTime
@@ -90,6 +95,29 @@ export class HomePage {
     } else {
       this.start();
       this.status = 'pause-circle';
+    }
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.tempo = ev.detail.data;
+    }
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: EditComponent,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    console.log(data);
+
+    if (role === 'confirm') {
+      this.tempo = data.tempo;
+      this.song = data.song;
     }
   }
 }

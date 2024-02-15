@@ -20,8 +20,8 @@
         class="ion-padding-end play-large"
         (click)="startStop()"
       ></ion-icon>
-      <ion-label class="text-size">Los Angeles is Burning</ion-label>
-      <div class="bpm" data-bpm="128">
+      <ion-label class="text-size">{{ song }}</ion-label>
+      <div class="bpm" [attr.data-bpm]="tempo" (click)="openModal()">
         <ion-icon
           name="musical-note"
           color="black"
