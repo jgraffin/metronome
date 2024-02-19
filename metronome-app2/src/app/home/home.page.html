@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar class="ion-">
+      <ion-title size="large">{{ title }}</ion-title>
+      <ion-buttons slot="end">
+        <app-add-button (addNewEmitter)="addNew()"></app-add-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ng-container *ngFor="let item of songs">
+      <app-tempo
+        [id]="item.id"
+        [name]="item.name"
+        [tempo]="item.tempo"
+        [status]="item.status"
+        (editConfirmEmitter)="editConfirm($event)"
+        (removeConfirmEmitter)="removeConfirm($event)"
+      ></app-tempo>
+    </ng-container>
+  </ion-list>
+</ion-content>

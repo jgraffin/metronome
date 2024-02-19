@@ -1,0 +1,32 @@
+<div class="ion-activatable ripple-parent rounded-rectangle">
+  <ion-item class="ion-align-items-center item" [attr.id]="id">
+    <ion-buttons (click)="startStop($event, id)">
+      <ion-icon
+        name="{{ !isActive ? 'play-circle' : 'pause-circle' }}"
+        color="primary"
+        size="large"
+        class="ion-padding-end play-large ion-padding-start"
+      ></ion-icon>
+      <ion-label class="text-size">{{ name }}</ion-label>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="openModal(id, name, tempo)">
+      <div class="bpm" [attr.data-bpm]="tempo">
+        <ion-icon
+          name="musical-note"
+          color="black"
+          size="small"
+          class="ion-padding-end"
+        ></ion-icon>
+      </div>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="removeSong(id)">
+      <ion-icon
+        class="ion-padding-start"
+        name="trash-outline"
+        color="black"
+        size="medium"
+      ></ion-icon>
+    </ion-buttons>
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-item>
+</div>

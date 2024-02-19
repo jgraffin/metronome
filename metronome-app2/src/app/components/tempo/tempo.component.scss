@@ -1,0 +1,11 @@
+.bpm {
+  position: relative;
+
+  &::after {
+    content: attr(data-bpm);
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    font-size: 12px;
+  }
+}
