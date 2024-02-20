@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { SongsService } from 'src/app/services/songs.service';
 
 @Component({
@@ -10,15 +10,12 @@ import { SongsService } from 'src/app/services/songs.service';
 export class AddComponent implements OnInit {
   name = '';
   tempo = null;
+  band = '';
 
   constructor(
     private modalCtrl: ModalController,
-    public readonly navParams: NavParams,
     private readonly songsService: SongsService
-  ) {
-    this.name = navParams.get('name');
-    this.tempo = navParams.get('tempo');
-  }
+  ) {}
 
   ngOnInit() {}
 
@@ -30,6 +27,7 @@ export class AddComponent implements OnInit {
     let payload = {
       name: this.name,
       tempo: this.tempo,
+      band: this.band,
     };
 
     return this.songsService.postSong(payload).subscribe(() => {

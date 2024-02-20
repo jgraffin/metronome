@@ -1,29 +1,42 @@
-<ion-header [translucent]="true">
+<ion-header *ngIf="songs.length > 0" [translucent]="true">
   <ion-toolbar>
     <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header *ngIf="songs.length > 0" collapse="condense">
     <ion-toolbar class="ion-">
       <ion-title size="large">{{ title }}</ion-title>
       <ion-buttons slot="end">
-        <app-add-button (addNewEmitter)="addNew()"></app-add-button>
+        <app-add-button
+          [size]="'small'"
+          (addNewEmitter)="addNew()"
+        ></app-add-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
+  <ion-list *ngIf="songs.length > 0; else noSongs">
     <ng-container *ngFor="let item of songs">
       <app-tempo
         [id]="item.id"
         [name]="item.name"
         [tempo]="item.tempo"
+        [band]="item.band"
         [status]="item.status"
         (editConfirmEmitter)="editConfirm($event)"
-        (removeConfirmEmitter)="removeConfirm($event)"
+        (removeConfirmEmitter)="presentDeleteConfirmation($event)"
       ></app-tempo>
     </ng-container>
   </ion-list>
+  <ng-template #noSongs>
+    <div class="wrapper-content">
+      <p>Nenhum BPM Cadastrado</p>
+      <app-add-button
+        [size]="'medium'"
+        (addNewEmitter)="addNew()"
+      ></app-add-button>
+    </div>
+  </ng-template>
 </ion-content>

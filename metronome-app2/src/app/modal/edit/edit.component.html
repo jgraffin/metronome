@@ -1,29 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
-    <ion-title>Welcome</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="onSubmit()" [strong]="true">Confirm</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content class="ion-padding">
-  <ion-item>
+  <h4 class="ion-text-uppercase ion-no-padding">Editar BPM</h4>
+  <ion-item class="ion-no-padding" color="transparent">
     <ion-input
-      labelPlacement="stacked"
+      labelPlacement="floating"
       label="Música"
       type="text"
       [(ngModel)]="item.name"
     ></ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item class="ion-no-padding" color="transparent">
     <ion-input
-      labelPlacement="stacked"
+      labelPlacement="floating"
+      label="Banda"
+      type="text"
+      [(ngModel)]="item.band"
+    ></ion-input>
+  </ion-item>
+  <ion-item class="ion-no-padding" color="transparent">
+    <ion-input
+      labelPlacement="floating"
       label="BPM"
       type="number"
       [(ngModel)]="item.tempo"
     ></ion-input>
   </ion-item>
 </ion-content>
+<ion-footer class="ion-padding-top ion-padding-bottom">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-col-6">
+        <ion-button
+          color="medium"
+          shape="round"
+          fill="outline"
+          color="medium"
+          expand="block"
+          (click)="cancel()"
+        >
+          Cancelar
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-col-6">
+        <ion-button
+          color="success"
+          shape="round"
+          fill="solid"
+          (click)="onSubmit()"
+          expand="block"
+          [strong]="true"
+        >
+          Editar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

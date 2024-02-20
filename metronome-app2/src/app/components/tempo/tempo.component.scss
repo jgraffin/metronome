@@ -1,11 +1,32 @@
+.title-song {
+  font-size: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  overflow: hidden;
+
+  small {
+    color: #92949c;
+    font-weight: 400;
+  }
+}
+
+.play-large {
+  height: 70px;
+  width: 50px;
+}
+
 .bpm {
   position: relative;
 
   &::after {
     content: attr(data-bpm);
+    color: #989aa3;
     position: absolute;
-    right: 2px;
-    bottom: 2px;
+    right: -3px;
+    bottom: 10px;
     font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
   }
 }

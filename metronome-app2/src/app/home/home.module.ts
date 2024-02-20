@@ -22,5 +22,6 @@ import { AddButtonModule } from '../components/add-button/add-button.module';
     HomePageRoutingModule,
   ],
   declarations: [HomePage],
+  exports: [HomePage],
 })
 export class HomePageModule {}

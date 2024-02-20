@@ -1,11 +1,7 @@
-.text-size {
-  font-size: inherit;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.play-large {
-  height: 50px;
-  width: 50px;
+.wrapper-content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

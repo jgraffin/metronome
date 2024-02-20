@@ -1,6 +1,6 @@
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonModal, ModalController } from '@ionic/angular';
+import { AlertController, IonModal, ModalController } from '@ionic/angular';
 import { SongsService } from '../services/songs.service';
 import { AddComponent } from '../modal/add/add.component';
 
@@ -15,7 +15,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private readonly songsService: SongsService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private alertController: AlertController
   ) {}
 
   title = 'Músicas';
@@ -31,13 +32,11 @@ export class HomePage implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((result: any) => {
         this.songs = result;
-        console.log('result', result);
       });
   }
 
   editConfirm(role: string) {
     if (role === 'confirm') {
-      console.log(role);
       this.getSongs();
     }
   }
@@ -51,6 +50,28 @@ export class HomePage implements OnInit {
       });
   }
 
+  async presentDeleteConfirmation(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirma exclusão?',
+      message: 'Tem certeza que deseja excluir este andamento?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Excluir',
+          handler: () => {
+            this.removeConfirm(id);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
   async addNew() {
     const modal = await this.modalCtrl.create({
       component: AddComponent,
@@ -58,10 +79,8 @@ export class HomePage implements OnInit {
     modal.present();
 
     const { role } = await modal.onWillDismiss();
-    console.log(role);
 
     if (role === 'confirm') {
-      console.log(role);
       this.getSongs();
     }
   }

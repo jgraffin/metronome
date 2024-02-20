@@ -1,10 +1,12 @@
 <ion-button
   shape="round"
-  size="small"
+  [size]="size"
   class="ion-padding-start ion-padding-end ion-align-self-center"
-  color="warning"
-  fill="solid"
+  color="success"
+  fill="outline"
   (click)="openModal()"
 >
-  <strong class="ion-padding-start ion-padding-end">Add +</strong></ion-button
->
+  <strong class="ion-padding-start ion-padding-end ion-text-uppercase">
+    Adicionar +
+  </strong>
+</ion-button>

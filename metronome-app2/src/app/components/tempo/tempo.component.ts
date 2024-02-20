@@ -11,6 +11,7 @@ export class TempoComponent implements OnInit {
   @Input() tempo!: number;
   @Input() id!: string;
   @Input() name!: string;
+  @Input() band!: string;
   @Input() status!: string;
   @Output() editConfirmEmitter = new EventEmitter();
   @Output() removeConfirmEmitter = new EventEmitter();
@@ -105,7 +106,7 @@ export class TempoComponent implements OnInit {
     }
   }
 
-  async openModal(id: string, name: string, tempo: number) {
+  async openModal(id: string, name: string, tempo: number, band: string) {
     if (this.isRunning) {
       this.stop();
       this.isActive = false;
@@ -118,6 +119,7 @@ export class TempoComponent implements OnInit {
           id,
           name,
           tempo,
+          band,
         },
       },
     });
@@ -129,6 +131,11 @@ export class TempoComponent implements OnInit {
   }
 
   removeSong(id: string) {
+    if (this.isRunning) {
+      this.stop();
+      this.isActive = false;
+    }
+
     this.removeConfirmEmitter.emit(id);
   }
 }
